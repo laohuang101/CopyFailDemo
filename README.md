@@ -94,6 +94,26 @@ if __name__=="__main__":
  print("\n[DONE]")
 ```
 
-## Now will have the rrot access
+## Now will have the root access
 ### Show how the cross container works
+#### Docker setup in fedora
+```
+sudo dnf config-manager addrepo --from-repofile="https://download.docker.com/linux/fedora/docker-ce.repo"
+sudo dnf install docker-ce docker-ce-cli containerd.io --skip-broken
+sudo systemctl start docker
+sudo systemctl enable docker
+sudo docker run hello-world
+sudo docker run -it ubuntu /bin/bash
+```
+#### Test
+```
+exit
+setenforce 0
+sudo docker run -v /etc:/host_etc -it ubuntu /bin/bash
+head -n 5 /host_etc/passwd
 
+```
+## Cleanup
+```
+
+```
